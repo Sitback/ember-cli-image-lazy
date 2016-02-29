@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import InViewportManager from '../utils/in-viewport-manager';
 
-var defaultInViewportManager = new InViewportManager();
+let defaultInViewportManager = new InViewportManager();
 
 /**
- * InViewportMixin
+ * @public
+ * @class InViewport
  * An Ember View mixin that tracks when the view
  * enters the viewport
  */
@@ -12,7 +13,7 @@ export default Ember.Mixin.create({
   didEnterViewport: false,
   inViewportManager: defaultInViewportManager,
 
-  checkIfInViewport: function() {
+  checkIfInViewport() {
     return this.inViewportManager.isElementInViewport(this.get('element'));
   },
 

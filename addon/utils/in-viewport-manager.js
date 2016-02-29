@@ -1,9 +1,10 @@
 import Ember from 'ember';
 
-var $ = Ember.$;
+const { $ } = Ember;
 
 /**
  * @class InViewportManager
+ * @public
  */
 function InViewportManager(options) {
   options = options || {};
@@ -17,7 +18,7 @@ function InViewportManager(options) {
 }
 
 InViewportManager.prototype.startObserving = function() {
-  var self = this;
+  let self = this;
   function throttledProcessor() {
     Ember.run.throttle(self, self.processQueue, self.throttle, false);
   }
@@ -35,7 +36,7 @@ InViewportManager.prototype.queueView = function(view) {
   if (view._inViewportId) {
     this.dequeueView(view);
   }
-  var id = '' + this.guid;
+  let id = `${this.guid}`;
   view._inViewportId = id;
   this.queue[id] = view;
   this.viewCount++;
@@ -46,7 +47,7 @@ InViewportManager.prototype.queueView = function(view) {
 };
 
 InViewportManager.prototype.dequeueView = function(view) {
-  var id = view._inViewportId;
+  let id = view._inViewportId;
   if (id) {
     view._inViewportId = null;
     delete this.queue[id];
@@ -58,8 +59,10 @@ InViewportManager.prototype.dequeueView = function(view) {
 };
 
 InViewportManager.prototype.processQueue = function() {
-  var queue = this.queue;
-  var id, view, element;
+  let { queue } = this;
+  let id;
+  let view;
+  let element;
 
   for (id in queue) {
     if (queue.hasOwnProperty(id)) {
@@ -74,8 +77,8 @@ InViewportManager.prototype.processQueue = function() {
 };
 
 InViewportManager.prototype.isElementInViewport = function(element) {
-  var rect = element.getBoundingClientRect();
-  var offset = this.offset;
+  let rect = element.getBoundingClientRect();
+  let { offset } = this;
 
   return rect.bottom > 0 - offset &&
          rect.right > 0 - offset &&

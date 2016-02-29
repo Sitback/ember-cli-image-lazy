@@ -1,14 +1,13 @@
 import Ember from 'ember';
-import { initialize } from '../../../initializers/image-lazy';
+import ImageLazyInitializer from '../../../initializers/image-lazy';
 import { module, test } from 'qunit';
 
-var container, application;
+let application;
 
-module('ImageLazyInitializer', {
-  beforeEach: function() {
+module('Unit | Initializer | image lazy', {
+  beforeEach() {
     Ember.run(function() {
       application = Ember.Application.create();
-      container = application.__container__;
       application.deferReadiness();
     });
   }
@@ -16,7 +15,7 @@ module('ImageLazyInitializer', {
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  initialize(container, application);
+  ImageLazyInitializer.initialize(application);
 
   // you would normally confirm the results of the initializer here
   assert.ok(true);
