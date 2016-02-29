@@ -1,15 +1,17 @@
 import Ember from 'ember';
-import InViewportMixin from './in-viewport';
+import InViewport from './in-viewport';
 
 /**
- * A mixin for Ember image views to load them only 
+ * A mixin for Ember image views to load them only
  * when they are scrolled into the viewport.
- * @class LazyImageViewMixin
- * @uses InViewportMixin
+ * @class LazyImage
+ * @uses InViewport
+ * @public
  */
-export default Ember.Mixin.create( InViewportMixin, {
+export default Ember.Mixin.create(InViewport, {
   /**
    * @override
+   * @public
   */
   loadImageOnInsert: null,
 
